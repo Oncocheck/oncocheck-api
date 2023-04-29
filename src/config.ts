@@ -8,5 +8,8 @@ export default {
   },
   user: {
     passwordSalt: 12
+  },
+  auth: {
+    jwtSecretKey: process.env.JWT_SECRET_KEY
   }
 }
