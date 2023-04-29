@@ -28,8 +28,6 @@ export class SessionController {
     } else {
       const accessToken = this.fastify.jwt.sign(result.data)
 
-      console.log(accessToken)
-
       return reply.status(200).send({
         success: true,
         data: { ...result.data, accessToken }
