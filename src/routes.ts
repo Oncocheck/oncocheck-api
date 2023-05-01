@@ -22,6 +22,7 @@ async function routes(fastify: FastifyInstance) {
 
   fastify.get("/organs", organController.index.bind(organController))
   fastify.get("/exams/:organ", examController.index.bind(examController))
+  fastify.get("/exams/:id", examController.show.bind(examController))
   fastify.post("/exams", examController.create.bind(examController))
 }
 
