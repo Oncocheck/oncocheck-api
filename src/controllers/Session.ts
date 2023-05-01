@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 
-import { UserService } from "@/services/User";
+import { SessionService } from "@/services/Session";
 
 interface CreateSession {
   login: string
@@ -10,7 +10,7 @@ interface CreateSession {
 export class SessionController {
   constructor(
     private fastify: FastifyInstance,
-    private readonly userService = new UserService()
+    private readonly sessionService = new SessionService()
   ) { }
 
   async create(
@@ -18,7 +18,7 @@ export class SessionController {
     reply: FastifyReply
   ) {
     const { login, password } = request.body
-    const result = await this.userService.signIn(login, password)
+    const result = await this.sessionService.signIn(login, password)
 
     if (!result.success) {
       return reply.status(400).send({

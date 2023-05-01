@@ -3,7 +3,7 @@ import { User } from "@/models/User";
 
 import * as bcrypt from 'bcryptjs'
 
-export class UserService {
+export class SessionService {
   constructor(
     private readonly userRepository = Database.getRepository(User)
   ) { }
