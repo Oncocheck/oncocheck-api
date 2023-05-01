@@ -20,6 +20,19 @@ export class ExamService {
     return { success: true, data: organs }
   }
 
+  async getExamById(examId: number) {
+    const exam = await this.examRepository.findOne({ 
+      where: { id: examId },
+      relations: ['organs', 'markers']
+    })
+
+    if (!exam) {
+      return { success: false, error: 'No exam with the given id.' }
+    }
+
+    return { success: true, data: exam }
+  }
+
   async getExamsByOrgan(organ: string) {
     const availableOrgans = await this.getOrgans()
 
