@@ -1,7 +1,8 @@
+import 'dotenv/config'
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 
-import config from '@/config'
+import config from '../config'
 
 export const Database = new DataSource({
   type: 'mysql',
@@ -13,6 +14,6 @@ export const Database = new DataSource({
   synchronize: true,
   logging: false,
   entities: ["src/models/*.ts"],
-  migrations: [],
+  migrations: ["src/database/migrations/*.ts"],
   subscribers: [],
 })

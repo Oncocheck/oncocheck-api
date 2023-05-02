@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
-import { ExamService } from "@/services/Exam";
+import { ExamService } from "../services/Exam";
 
 export class OrganController {
   constructor(

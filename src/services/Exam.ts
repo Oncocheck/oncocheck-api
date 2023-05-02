@@ -1,6 +1,6 @@
-import { Database } from "@/database";
-import { Exam } from "@/models/Exam";
-import { Organ } from "@/models/Organ";
+import { Database } from "../database";
+import { Exam } from "../models/Exam";
+import { Organ } from "../models/Organ";
 
 interface CreateExamParams {
   name: string
@@ -21,7 +21,7 @@ export class ExamService {
   }
 
   async getExamById(examId: number) {
-    const exam = await this.examRepository.findOne({ 
+    const exam = await this.examRepository.findOne({
       where: { id: examId },
       relations: ['organs', 'markers']
     })

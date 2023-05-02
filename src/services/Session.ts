@@ -1,5 +1,5 @@
-import { Database } from "@/database";
-import { User } from "@/models/User";
+import { Database } from "../database";
+import { User } from "../models/User";
 
 import * as bcrypt from 'bcryptjs'
 
@@ -30,9 +30,9 @@ export class SessionService {
     return {
       success: true,
       data: {
-        id: registeredUser.id,
+        userId: registeredUser.id,
         login: registeredUser.login,
-        type: registeredUser.type
+        userType: registeredUser.type
       }
     }
   }

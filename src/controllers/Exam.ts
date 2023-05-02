@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
-import { ExamService } from "@/services/Exam";
+import { ExamService } from "../services/Exam";
 
-interface IndexExamsParams {
+interface IndexExamsQuery {
   organ: string
 }
 
@@ -18,11 +18,11 @@ export class ExamController {
   ) { }
 
   async index(
-    request: FastifyRequest<{ Params: IndexExamsParams }>,
+    request: FastifyRequest<{ Querystring: IndexExamsQuery }>,
     reply: FastifyReply
   ) {
     try {
-      const organ = request.params.organ
+      const organ = request.query.organ
       const search = await this.examService.getExamsByOrgan(organ)
 
       if (!search.success) {
@@ -30,6 +30,24 @@ export class ExamController {
       }
 
       return reply.status(200).send({ data: search.data })
+    } catch (err) {
+      return reply.status(500).send({ error: err })
+    }
+  }
+
+  async show(
+    request: FastifyRequest<{ Params: { id: number } }>,
+    reply: FastifyReply
+  ) {
+    try {
+      const examId = request.params.id
+      const getExamResult = await this.examService.getExamById(examId)
+
+      if (!getExamResult.success) {
+        return reply.status(404).send({ error: getExamResult.error })
+      }
+
+      return reply.status(200).send({ data: getExamResult.data })
     } catch (err) {
       return reply.status(500).send({ error: err })
     }

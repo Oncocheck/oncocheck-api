@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 
-import { SessionService } from "@/services/Session";
+import { SessionService } from "../services/Session";
 
 interface CreateSession {
   login: string

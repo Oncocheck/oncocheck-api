@@ -1,17 +1,14 @@
-import { Type, Static } from "@sinclair/typebox";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-import { MedicService } from "@/services/Medic";
+import { MedicService } from "../services/Medic";
 
-const CreateMedicSchema = Type.Object({
-  name: Type.String(),
-  login: Type.String(),
-  email: Type.String(),
-  password: Type.String(),
-  crm: Type.String(),
-})
-
-type CreateMedicBody = Static<typeof CreateMedicSchema>
+interface CreateMedicBody {
+  name: string
+  login: string
+  email: string
+  password: string
+  crm: string
+}
 
 export class MedicController {
   private readonly medicService: MedicService

@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm"
-import { User } from "@/models/User"
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { User } from "../models/User"
+import { Exam } from "./Exam"
 
 @Entity()
 export class Medic {
@@ -12,4 +13,8 @@ export class Medic {
   @OneToOne(() => User, { cascade: true })
   @JoinColumn()
   user: User
+
+  @ManyToMany(() => Exam)
+  @JoinTable({ name: 'favorite_exams' })
+  favoriteExams: Exam[]
 }
